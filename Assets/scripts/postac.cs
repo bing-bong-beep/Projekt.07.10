@@ -36,6 +36,7 @@ public class postac : MonoBehaviour
         {
             return;
         }
+
          moveInput = Input.GetAxis("Horizontal");
 
 
@@ -64,6 +65,7 @@ public class postac : MonoBehaviour
         {
             return;
         }
+
         rigibody2.velocity = new Vector2(moveInput * moveSpeed * Time.fixedDeltaTime, rigibody2.velocity.y);
         spriteRenderer.flipX = rigibody2.velocity.x < 0f;
 
