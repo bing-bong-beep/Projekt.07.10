@@ -8,7 +8,7 @@ public class postac : MonoBehaviour
 
     public float moveSpeed = 5;
     public float jumpForce = 300;
-    public float moveInput = 5;
+    public float moveInput = 0;
     public Rigidbody2D rigibody2;
     public SpriteRenderer spriteRenderer;
     public GroundChecker groundChecker;
@@ -19,6 +19,7 @@ public class postac : MonoBehaviour
     public float dashCooldown = 1f;
     public bool isDashing;
     private bool canDash = true;
+    public Animator anim;
   
 
 
@@ -27,6 +28,7 @@ public class postac : MonoBehaviour
     {
        rigibody2 = GetComponent<Rigidbody2D>();
        spriteRenderer = GetComponent<SpriteRenderer>();
+       anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -39,18 +41,39 @@ public class postac : MonoBehaviour
 
          moveInput = Input.GetAxis("Horizontal");
 
+        if (moveInput != 0)
+        {
+            anim.SetFloat("isRun", 1);
+        }
+        else
+        {
+            anim.SetFloat("isRun", -1);
+        }
+
+        if (isJump)
+        {
+            anim.SetBool("isJump", true);
+        }
+        else
+        {
+            anim.SetBool("isJump", false);
+        }
+
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if(groundChecker.isGrounded || DoubleJump)
+            if (groundChecker.isGrounded || DoubleJump)
             {
                 isJump = true;
+              //anim.SetBool("isJump", true);
             }
         }
         if ((Input.GetKeyDown(KeyCode.Space) && groundChecker.isGrounded))
         {
             DoubleJump = false; 
         }
+
+        
 
         if (Input.GetKey(KeyCode.LeftShift) && canDash)
         {
