@@ -104,9 +104,11 @@ public class postac : MonoBehaviour
     {
         canDash = false;
         isDashing = true;
+        anim.SetBool("isDash", true);
         rigibody2.velocity = new Vector2(moveInput * dashSpeed * Time.fixedDeltaTime, rigibody2.velocity.y);
         yield return new WaitForSeconds(dashDuration);
         isDashing = false;
+        anim.SetBool("isDash", false);
 
         yield return new WaitForSeconds(dashCooldown);
         canDash = true;
