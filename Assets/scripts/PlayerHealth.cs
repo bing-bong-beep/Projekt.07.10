@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] public int maxHealth = 100;
-    [SerializeField] public int Health = 100;
+    public int Health = 100;
     //public Animator anim;
     public TextMeshProUGUI textHealth;
 
